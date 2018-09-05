@@ -4,42 +4,46 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until script has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-echo "Start by installing Xcode from here: (https://developer.apple.com/xcode/)\n"
+echo "Start by installing Xcode from here: (https://developer.apple.com/xcode/)"
 
 read -p "Press [Enter] once this is done."
 
-echo "\nInstalling xcode related stuff ⚒\n"
+echo "Installing xcode related stuff ⚒"
 xcode-select --install
 sudo xcodebuild -license accept # Accepts the Xcode license
 
-echo "Installing Homebrew 🍺\n"
+echo "Installing Homebrew 🍺"
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-echo "Installing MAS\n"
+echo "Installing MAS"
 brew install mas
 read -p "What is your Apple ID email? " appleID
 mas signin $appleID
 
-echo "\nInstalling apps from Brewfile 🙌\n"
+echo "Installing apps from Brewfile 🙌"
 brew bundle install
 
-echo "Login and download apps from Setapp before continuing. Also, make sure to login to Dropbox and have the Dropbox folder in the $HOME directory.\n"
+echo "Login and download apps from Setapp before continuing."
 
 read -p "Press [Enter] once this is done."
 
-echo "\nUploading settings from Mackup 🤙\n"
+echo "Login to Dropbox and have the Dropbox folder in the $HOME directory."
+
+read -p "Press [Enter] once this is done."
+
+echo "Uploading settings from Mackup 🤙"
 mackup restore
 
-echo "Find the settings for iTerm2, 1Password and Alfred in Dropbox and link each one of these applications with their corresponding settings file.\n"
+echo "Find the settings for iTerm2 and Alfred in Dropbox and link each one of these applications with their corresponding settings file. Also setup 1Password to sync with iCloud."
 
 read -p "Press [Enter] once this is done."
 
-echo "\nInstalling JavaScript related packages 🖥\n"
+echo "Installing JavaScript related packages 🖥"
 yarn global add avn avn-nvm # Node version adapters for nvm
 avn setup
 yarn global add react-native-cli
 
-echo "Installing Ruby related packages 💎\n"
+echo "Installing Ruby related packages 💎"
 Install latest ruby version with rbenv as default system ruby
 rbenv init
 LATEST_RUBY_VERSION="$(rbenv install -l | grep -v - | tail -1 | tr -d '[[:space:]]')"

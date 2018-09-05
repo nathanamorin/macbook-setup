@@ -7,10 +7,7 @@ tap "homebrew/cask-versions"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
-tap "homebrew/dupes"
-tap "homebrew/php"
 tap "homebrew/services"
-tap "homebrew/versions"
 tap "caskroom/fonts"
 
 ###################################
@@ -42,7 +39,6 @@ brew "tree"
 brew "wget"
 
 # Utilities
-brew "gpg"
 brew "openssl"
 brew "python3"
 brew "php", restart_service: true
